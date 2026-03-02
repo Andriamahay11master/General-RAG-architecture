@@ -1,6 +1,7 @@
-import requests
+from groq import Groq
+import os
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def generate_llm_answer(query, retrieved_chunks):
     if not retrieved_chunks:
@@ -11,8 +12,7 @@ def generate_llm_answer(query, retrieved_chunks):
     prompt = f"""
 You are an AI assistant.
 
-Answer the question using ONLY the information provided in the context below.
-Do not add external knowledge.
+Answer the question using ONLY the context below.
 If the answer is not in the context, say you don't know.
 
 Context:
@@ -24,13 +24,12 @@ Question:
 Answer:
 """
 
-    response = requests.post(
-        OLLAMA_URL,
-        json={
-            "model": "mistral",
-            "prompt": prompt,
-            "stream": False
-        }
+    response = client.chat.completions.create(
+        model="llama3-8b-8192",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.2
     )
 
-    return response.json()["response"].strip()
+    return response.choices[0].message.content.strip()
