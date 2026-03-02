@@ -8,11 +8,9 @@ chunks = chunk_text(doc, chunk_size=20)
 
 retriever = Retriever(chunks)
 
-query = "Explain deep learning."
+query = "Explain machine learning."
 retrieved = retriever.retrieve(query, k=3)
 
 answer = generate_llm_answer(query, retrieved)
 
-print("Question:", query)
-print("\nMistral Answer:\n")
 print(answer)
