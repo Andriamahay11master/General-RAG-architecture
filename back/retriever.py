@@ -1,5 +1,5 @@
-from embeddings import embed_texts
-from vectorstore import VectorStore
+from back.embeddings import embed_texts
+from back.vectorstore import VectorStore
 
 class Retriever:
     def __init__(self, chunks):

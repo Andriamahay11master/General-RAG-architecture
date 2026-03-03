@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from back.loader import load_document
 from back.chunker import chunk_text
 from back.retriever import Retriever
@@ -11,7 +11,23 @@ doc = load_document("data/sample.txt")
 chunks = chunk_text(doc, chunk_size=150)
 retriever = Retriever(chunks)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
+
+
+@app.route("/ask", methods=["POST"])
+def ask():
+    data = request.get_json()
+    question = data.get("question")
+
+    retrieved = retriever.retrieve(question, k=3)
+    answer = generate_llm_answer(question, retrieved)
+
+    return jsonify({
+        "answer": answer
+    })
+
 def index():
     answer = None
     question = None
