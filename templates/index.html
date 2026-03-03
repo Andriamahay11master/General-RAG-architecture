@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AI Document Assistant</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📄 AI Document Assistant</h1>
+
+      <form method="POST">
+        <textarea name="question" placeholder="Ask a question..." required>
+{{ question if question else '' }}</textarea
+        >
+        <button type="submit">Ask</button>
+      </form>
+
+      {% if answer %}
+      <div class="response">
+        <h3>Answer:</h3>
+        <p>{{ answer }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
