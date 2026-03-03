@@ -11,19 +11,56 @@
     <div class="container">
       <h1>📄 AI Document Assistant</h1>
 
-      <form method="POST">
-        <textarea name="question" placeholder="Ask a question..." required>
-{{ question if question else '' }}</textarea
-        >
+      <form method="POST" id="question-form">
+        <textarea
+          name="question"
+          id="question-input"
+          placeholder="Ask a question..."
+          required
+        ></textarea>
         <button type="submit">Ask</button>
       </form>
 
-      {% if answer %}
-      <div class="response">
+      <div id="response" class="response" style="display: none">
         <h3>Answer:</h3>
-        <p>{{ answer }}</p>
+        <p id="answer-text"></p>
       </div>
-      {% endif %}
     </div>
+    <script>
+      const form = document.getElementById("question-form");
+      const textarea = document.getElementById("question-input");
+      const responseDiv = document.getElementById("response");
+      const answerText = document.getElementById("answer-text");
+
+      // Submit on Enter (but allow Shift+Enter for newline)
+      textarea.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          form.dispatchEvent(new Event("submit"));
+        }
+      });
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault(); // stop page refresh
+
+        const question = textarea.value.trim();
+        if (!question) return;
+
+        answerText.innerText = "Thinking...";
+        responseDiv.style.display = "block";
+
+        const res = await fetch("/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: question }),
+        });
+
+        const data = await res.json();
+
+        answerText.innerText = data.answer;
+      });
+    </script>
   </body>
 </html>

@@ -28,20 +28,5 @@ def ask():
         "answer": answer
     })
 
-def index():
-    answer = None
-    question = None
-
-    if request.method == "POST":
-        question = request.form["question"]
-        retrieved = retriever.retrieve(question, k=3)
-        answer = generate_llm_answer(question, retrieved)
-
-    return render_template(
-        "index.html",
-        answer=answer,
-        question=question
-    )
-
 if __name__ == "__main__":
     app.run(debug=True)
