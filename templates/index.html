@@ -8,31 +8,27 @@
     />
   </head>
   <body>
-    <div class="container">
+    <div class="chat-container">
       <h1>📄 AI Document Assistant</h1>
 
-      <form method="POST" id="question-form">
+      <div id="chat-box" class="chat-box"></div>
+
+      <form id="chat-form" class="chat-form">
         <textarea
-          name="question"
           id="question-input"
-          placeholder="Ask a question..."
+          placeholder="Ask something about the document..."
           required
         ></textarea>
-        <button type="submit">Ask</button>
+        <button type="submit">Send</button>
       </form>
-
-      <div id="response" class="response" style="display: none">
-        <h3>Answer:</h3>
-        <p id="answer-text"></p>
-      </div>
     </div>
-    <script>
-      const form = document.getElementById("question-form");
-      const textarea = document.getElementById("question-input");
-      const responseDiv = document.getElementById("response");
-      const answerText = document.getElementById("answer-text");
 
-      // Submit on Enter (but allow Shift+Enter for newline)
+    <script>
+      const form = document.getElementById("chat-form");
+      const textarea = document.getElementById("question-input");
+      const chatBox = document.getElementById("chat-box");
+
+      // Submit on Enter (Shift+Enter = newline)
       textarea.addEventListener("keydown", function (e) {
         if (e.key === "Enter" && !e.shiftKey) {
           e.preventDefault();
@@ -41,26 +37,39 @@
       });
 
       form.addEventListener("submit", async function (e) {
-        e.preventDefault(); // stop page refresh
+        e.preventDefault();
 
         const question = textarea.value.trim();
         if (!question) return;
 
-        answerText.innerText = "Thinking...";
-        responseDiv.style.display = "block";
+        addMessage(question, "user");
+        textarea.value = "";
+
+        const thinkingMsg = addMessage("Thinking...", "bot");
 
         const res = await fetch("/ask", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ question: question }),
         });
 
         const data = await res.json();
 
-        answerText.innerText = data.answer;
+        thinkingMsg.innerText = data.answer;
       });
+
+      // Add message to chat
+      function addMessage(text, sender) {
+        const message = document.createElement("div");
+        message.classList.add("message", sender);
+
+        message.innerText = text;
+
+        chatBox.appendChild(message);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        return message;
+      }
     </script>
   </body>
 </html>
