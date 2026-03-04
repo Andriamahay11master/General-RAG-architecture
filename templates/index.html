@@ -55,7 +55,7 @@
 
         const data = await res.json();
 
-        thinkingMsg.innerText = data.answer;
+        typeWriter(thinkingMsg, data.answer, 15);
       });
 
       // Add message to chat
@@ -69,6 +69,30 @@
         chatBox.scrollTop = chatBox.scrollHeight;
 
         return message;
+      }
+
+      function typeWriter(element, text, speed = 15) {
+        element.innerHTML = "";
+        let i = 0;
+
+        const cursor = document.createElement("span");
+        cursor.classList.add("cursor");
+        cursor.innerHTML = "|";
+
+        element.appendChild(cursor);
+
+        function typing() {
+          if (i < text.length) {
+            cursor.insertAdjacentText("beforebegin", text.charAt(i));
+            i++;
+            chatBox.scrollTop = chatBox.scrollHeight;
+            setTimeout(typing, speed);
+          } else {
+            cursor.remove(); // remove cursor after typing
+          }
+        }
+
+        typing();
       }
     </script>
   </body>
