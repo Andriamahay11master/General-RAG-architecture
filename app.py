@@ -7,7 +7,7 @@ from back.llm_engine import generate_llm_answer
 app = Flask(__name__)
 
 # Load and prepare document at startup
-doc = load_document("data/sample.txt")
+doc = load_document("data/document1.txt")
 chunks = chunk_text(doc, chunk_size=150)
 retriever = Retriever(chunks)
 
