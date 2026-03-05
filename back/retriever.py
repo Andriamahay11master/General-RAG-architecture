@@ -4,7 +4,7 @@ from back.vectorstore import VectorStore
 class Retriever:
     def __init__(self, chunks):
         self.chunks = chunks
-        self.embeddings = embed_texts(chunks)
+        self.embeddings = embed_texts([c["text"] for c in chunks])
         dimension = self.embeddings.shape[1]
         self.store = VectorStore(dimension)
         self.store.add_vectors(self.embeddings)

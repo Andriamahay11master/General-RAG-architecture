@@ -7,8 +7,19 @@ from back.llm_engine import generate_llm_answer
 app = Flask(__name__)
 
 # Load and prepare document at startup
-doc = load_document("data/document1.txt")
-chunks = chunk_text(doc, chunk_size=150)
+documents = load_document()
+all_chunks = []
+
+for doc in documents:
+    chunks = chunk_text(doc["content"])
+
+    for chunk in chunks:
+        all_chunks.append({
+            "text": chunk,
+            "source": doc["source"]
+        })
+
+chunks = all_chunks
 retriever = Retriever(chunks)
 
 @app.route("/", methods=["GET"])
