@@ -1,0 +1,11 @@
+Machine learning is a subset of artificial intelligence that focuses on algorithms that improve automatically through experience. Instead of following strictly programmed instructions, machine learning systems analyze data and identify patterns that allow them to make predictions or decisions.
+
+There are three main types of machine learning. The first type is supervised learning, where algorithms are trained on labeled datasets. In this approach, the model learns the relationship between input variables and output labels. Common supervised learning algorithms include linear regression, logistic regression, support vector machines, and neural networks.
+
+The second type is unsupervised learning. In this setting, the data does not include labels, and the algorithm must discover patterns or structure on its own. Clustering and dimensionality reduction are common tasks in unsupervised learning.
+
+The third type is reinforcement learning. In this paradigm, an agent interacts with an environment and learns by receiving rewards or penalties. Reinforcement learning is widely used in robotics, gaming, and autonomous systems.
+
+Machine learning models require careful evaluation to ensure they generalize well to new data. Techniques such as cross-validation, regularization, and feature engineering are used to improve model performance and reduce overfitting.
+
+Today, machine learning powers many technologies including recommendation systems, fraud detection systems, and autonomous vehicles.

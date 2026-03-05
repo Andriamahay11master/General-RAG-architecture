@@ -1,0 +1,9 @@
+Artificial Intelligence (AI) is a branch of computer science that focuses on building systems capable of performing tasks that typically require human intelligence. These tasks include reasoning, problem solving, learning, perception, language understanding, and decision making.
+
+The concept of artificial intelligence has existed for decades, but it has grown significantly in recent years due to improvements in computing power, data availability, and machine learning algorithms. AI systems are now used in many industries such as healthcare, finance, transportation, and education.
+
+AI can be divided into several subfields. One important area is machine learning, which focuses on training algorithms to learn patterns from data rather than relying on explicit programming. Another important area is natural language processing, which enables computers to understand and generate human language.
+
+Modern AI systems often rely on large datasets and complex models such as neural networks. These systems can analyze vast amounts of information to detect patterns and make predictions. For example, AI can help doctors diagnose diseases, recommend products to customers, and power voice assistants like smart speakers.
+
+Despite its potential, artificial intelligence also raises ethical and societal concerns. Issues such as bias in algorithms, privacy risks, and job displacement are widely discussed. Researchers and policymakers are working to ensure that AI technologies are developed responsibly and used for the benefit of society.

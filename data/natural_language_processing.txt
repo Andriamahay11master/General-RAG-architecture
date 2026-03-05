@@ -1,0 +1,9 @@
+Natural Language Processing (NLP) is a field of artificial intelligence that focuses on enabling computers to understand, interpret, and generate human language. NLP combines techniques from linguistics, machine learning, and computer science to process textual and spoken data.
+
+One of the most common tasks in NLP is text classification. In this task, algorithms assign predefined categories to text documents. Examples include spam detection, sentiment analysis, and topic classification.
+
+Another important task is named entity recognition, which identifies entities such as people, organizations, and locations within text. NLP systems also perform machine translation, question answering, and text summarization.
+
+Traditional NLP approaches relied heavily on rule-based systems and statistical models. However, recent advances in deep learning have dramatically improved performance. Transformer-based architectures such as large language models can process complex language patterns and generate highly coherent text.
+
+NLP technologies are widely used in applications such as chatbots, search engines, virtual assistants, and recommendation systems. As language models continue to improve, NLP will play an increasingly important role in human-computer interaction.
