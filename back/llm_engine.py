@@ -10,7 +10,11 @@ def generate_llm_answer(query, retrieved_chunks):
     if not retrieved_chunks:
         return "No relevant information found."
 
-    context = "\n\n".join(retrieved_chunks)
+    # Extract text from retrieved chunks
+    context = "\n\n".join(
+        f"Source: {chunk['source']}\n{chunk['text']}"
+        for chunk in retrieved_chunks
+    )
 
     prompt = f"""
 You are an AI assistant.

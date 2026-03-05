@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from back.loader import load_document
+from back.loader import load_documents
 from back.chunker import chunk_text
 from back.retriever import Retriever
 from back.llm_engine import generate_llm_answer
@@ -7,7 +7,7 @@ from back.llm_engine import generate_llm_answer
 app = Flask(__name__)
 
 # Load and prepare document at startup
-documents = load_document()
+documents = load_documents()
 all_chunks = []
 
 for doc in documents:
