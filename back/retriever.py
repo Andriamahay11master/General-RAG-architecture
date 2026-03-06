@@ -1,15 +1,25 @@
-from back.embeddings import embed_texts
+from back.chunker import chunk_text
+from back.loader import load_documents
 from back.vectorstore import VectorStore
 
 class Retriever:
-    def __init__(self, chunks):
-        self.chunks = chunks
-        self.embeddings = embed_texts([c["text"] for c in chunks])
-        dimension = self.embeddings.shape[1]
-        self.store = VectorStore(dimension)
-        self.store.add_vectors(self.embeddings)
+    def __init__(self):
+
+        documents = load_documents()
+
+        chunks = []
+
+        for doc in documents:
+            split_chunks = chunk_text(doc["content"])
+
+            for chunk in split_chunks:
+                chunks.append({
+                    "text": chunk,
+                    "source": doc["source"]
+                })
+
+        self.vector_store = VectorStore()
+        self.vector_store.build_index(chunks)
 
     def retrieve(self, query, k=3):
-        query_vector = embed_texts([query])[0]
-        indices = self.store.search(query_vector, k)
-        return [self.chunks[i] for i in indices]
+        return self.vector_store.search(query, k)

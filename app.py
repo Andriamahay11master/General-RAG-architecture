@@ -1,26 +1,10 @@
 from flask import Flask, render_template, request, jsonify
-from back.loader import load_documents
-from back.chunker import chunk_text
 from back.retriever import Retriever
 from back.llm_engine import generate_llm_answer
 
 app = Flask(__name__)
 
-# Load and prepare document at startup
-documents = load_documents()
-all_chunks = []
-
-for doc in documents:
-    chunks = chunk_text(doc["content"])
-
-    for chunk in chunks:
-        all_chunks.append({
-            "text": chunk,
-            "source": doc["source"]
-        })
-
-chunks = all_chunks
-retriever = Retriever(chunks)
+retriever = Retriever()
 
 @app.route("/", methods=["GET"])
 def index():
