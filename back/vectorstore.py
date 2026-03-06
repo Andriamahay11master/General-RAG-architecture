@@ -25,7 +25,7 @@ class VectorStore:
 
         self.chunks = chunks
 
-    def search(self, query, k=3):
+    def search(self, query, k=3, threshold=1.2):
         """
         Retrieve top-k chunks
         """
@@ -35,6 +35,12 @@ class VectorStore:
 
         distances, indices = self.index.search(query_embedding, k)
 
-        results = [self.chunks[i] for i in indices[0]]
+        results = []
+
+        for dist, idx in zip(distances[0], indices[0]):
+
+            # Filter irrelevant chunks
+            if dist < threshold:
+                results.append(self.chunks[idx])
 
         return results

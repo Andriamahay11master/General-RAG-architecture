@@ -45,9 +45,8 @@ Answer:
     if retrieved_chunks:
         sources = list(set(chunk["source"] for chunk in retrieved_chunks))
         source_text = "\n".join(f"- {s}" for s in sources)
+        final_answer = f"{answer}\n\nSources:\n{source_text}"
     else:
-        source_text = "No sources found."
-
-    final_answer = f"{answer}\n\nSources:\n{source_text}"
+        final_answer = answer
 
     return final_answer
