@@ -1,6 +1,6 @@
 import faiss
 import numpy as np
-from embeddings import embed_texts
+from back.embeddings import embed_texts
 
 class VectorStore:
 

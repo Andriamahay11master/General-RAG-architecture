@@ -41,10 +41,12 @@ Answer:
 
     answer = response.choices[0].message.content.strip()
 
-    # Extract unique sources
-    sources = list(set(chunk["source"] for chunk in retrieved_chunks))
-
-    source_text = "\n".join(f"- {s}" for s in sources)
+    # Extract unique sources if chunks are found
+    if retrieved_chunks:
+        sources = list(set(chunk["source"] for chunk in retrieved_chunks))
+        source_text = "\n".join(f"- {s}" for s in sources)
+    else:
+        source_text = "No sources found."
 
     final_answer = f"{answer}\n\nSources:\n{source_text}"
 
