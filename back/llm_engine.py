@@ -39,4 +39,13 @@ Answer:
         temperature=0.2
     )
 
-    return response.choices[0].message.content.strip()
+    answer = response.choices[0].message.content.strip()
+
+    # Extract unique sources
+    sources = list(set(chunk["source"] for chunk in retrieved_chunks))
+
+    source_text = "\n".join(f"- {s}" for s in sources)
+
+    final_answer = f"{answer}\n\nSources:\n{source_text}"
+
+    return final_answer
