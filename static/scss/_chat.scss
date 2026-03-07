@@ -22,3 +22,29 @@
 .bot {
   background: $bot-color;
 }
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+}
+
+textarea {
+  flex: 1;
+  resize: none;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: $primary-color;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background: $primary-color;
+  }
+}
