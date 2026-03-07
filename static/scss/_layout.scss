@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  font-family: $font-main;
+  background: #f4f6f9;
+}
+
+.chat-container {
+  max-width: 800px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
