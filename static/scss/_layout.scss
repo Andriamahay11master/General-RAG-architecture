@@ -13,4 +13,10 @@ body {
   height: 90vh;
   box-shadow: 0 0 5px $grey;
   border-radius: 12px;
+  @include mobile {
+    margin: 15px;
+    padding: 0;
+    height: calc(100vh - 30px);
+    box-shadow: none;
+  }
 }
