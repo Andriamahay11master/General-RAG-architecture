@@ -208,3 +208,8 @@ __marimo__/
 
 #Node
 node_modules/
+
+# VS Code
+*.pyc
+vector.index
+chunks.pkl
