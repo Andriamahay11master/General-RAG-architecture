@@ -36,6 +36,16 @@ body {
   background: white;
   border-radius: 12px;
 }
+.chat-box::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+.chat-box::-webkit-scrollbar-track {
+  background: #f4f6f9;
+}
 
 .message {
   max-width: 70%;
@@ -57,6 +67,7 @@ body {
 .chat-form {
   display: flex;
   gap: 10px;
+  padding: 5px 0 0;
 }
 
 textarea {
