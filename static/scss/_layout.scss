@@ -20,3 +20,9 @@ body {
     box-shadow: none;
   }
 }
+
+.chat-title {
+  @include mobile {
+    font-size: 25px;
+  }
+}

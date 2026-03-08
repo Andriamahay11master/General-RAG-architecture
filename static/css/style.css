@@ -23,6 +23,12 @@ body {
   }
 }
 
+@media (max-width: 600px) {
+  .chat-title {
+    font-size: 25px;
+  }
+}
+
 .chat-box {
   flex: 1;
   overflow-y: auto;
