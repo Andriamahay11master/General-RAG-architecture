@@ -7,9 +7,12 @@ body {
 .chat-container {
   max-width: 800px;
   margin: 40px auto;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   height: 90vh;
+  box-shadow: 0 0 5px #ccc;
+  border-radius: 12px;
 }
 
 .chat-box {

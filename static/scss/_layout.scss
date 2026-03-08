@@ -1,13 +1,16 @@
 body {
   margin: 0;
   font-family: $font-main;
-  background: #f4f6f9;
+  background: $white-f4;
 }
 
 .chat-container {
   max-width: 800px;
   margin: 40px auto;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   height: 90vh;
+  box-shadow: 0 0 5px $grey;
+  border-radius: 12px;
 }
