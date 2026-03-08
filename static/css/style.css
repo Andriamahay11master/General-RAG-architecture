@@ -53,6 +53,10 @@ textarea {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 2px #ccc;
+}
 
 button {
   padding: 10px 16px;
@@ -61,9 +65,10 @@ button {
   background: #007bff;
   color: white;
   cursor: pointer;
+  transition: all ease 0.2s;
 }
 button:hover {
-  background: #007bff;
+  background: #6c757d;
 }
 
 .cursor {
