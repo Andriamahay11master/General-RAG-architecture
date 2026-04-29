@@ -60,7 +60,7 @@ body {
   display: grid;
   grid-template-rows: auto minmax(0, auto);
   gap: 16px;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 42px);
   @include mobile {
     height: auto;
     gap: 8px;
