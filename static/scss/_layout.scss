@@ -10,6 +10,9 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 24px;
+  @include mobile {
+    padding: 16px;
+  }
 }
 
 .page-header {
@@ -39,6 +42,9 @@ body {
   margin: 0;
   font-size: 2rem;
   letter-spacing: -0.03em;
+  @include mobile {
+    font-size: 1.6rem;
+  }
 }
 
 .page-description {
@@ -57,6 +63,7 @@ body {
   height: calc(100vh - 140px);
   @include mobile {
     height: auto;
+    gap: 8px;
   }
 }
 
@@ -81,18 +88,4 @@ body {
   margin-bottom: 8px;
   font-size: 0.95rem;
   color: darken($white-f4, 40%);
-}
-
-@media (max-width: 600px) {
-  .page-shell {
-    padding: 16px;
-  }
-
-  .page-title {
-    font-size: 1.6rem;
-  }
-
-  .chat-container {
-    gap: 12px;
-  }
 }
