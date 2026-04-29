@@ -23,7 +23,7 @@ body {
 @media (max-width: 600px) {
   .page-header {
     position: sticky;
-    top: 0;
+    top: 16px;
     left: 0;
     background: #f4f6f9;
   }
@@ -95,7 +95,7 @@ body {
 @media (max-width: 600px) {
   .chat-input-panel {
     position: fixed;
-    bottom: 0;
+    bottom: 1rem;
     left: 1rem;
     width: calc(100% - 2rem);
     background: #f4f6f9;
@@ -118,6 +118,7 @@ body {
 @media (max-width: 600px) {
   .chat-box {
     padding: 18px;
+    max-height: calc(50vh - 18px);
   }
 }
 .chat-box::-webkit-scrollbar {

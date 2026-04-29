@@ -19,7 +19,7 @@ body {
   padding: 14px 0 24px;
   @include mobile {
     position: sticky;
-    top: 0;
+    top: 16px;
     left: 0;
     background: $white-f4;
   }
@@ -85,7 +85,7 @@ body {
   gap: 12px;
   @include mobile {
     position: fixed;
-    bottom: 0;
+    bottom: 1rem;
     left: 1rem;
     width: calc(100% - 2rem);
     background: $white-f4;

@@ -8,6 +8,7 @@
   min-height: 320px;
   @include mobile {
     padding: 18px;
+    max-height: calc(50vh - 18px);
   }
 
   &::-webkit-scrollbar {
