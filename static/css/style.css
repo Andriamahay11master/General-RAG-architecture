@@ -70,6 +70,7 @@ body {
   .chat-container {
     height: auto;
     gap: 8px;
+    padding: 0 1rem;
   }
 }
 
@@ -145,6 +146,11 @@ body {
   display: grid;
   gap: 12px;
   padding-top: 4px;
+}
+
+.chat-title {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 textarea {

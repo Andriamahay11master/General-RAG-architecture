@@ -64,6 +64,7 @@ body {
   @include mobile {
     height: auto;
     gap: 8px;
+    padding: 0 1rem;
   }
 }
 
