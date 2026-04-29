@@ -1,40 +1,69 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>AI Document Assistant</title>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Document Assistant</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
   </head>
   <body>
-    <div class="chat-container">
-      <h1 class="chat-title">📄 AI Document Assistant</h1>
+    <div class="page-shell">
+      <header class="page-header">
+        <div class="page-brand">
+          <span class="page-icon">📄</span>
+          <div>
+            <h1 class="page-title">AI Document Assistant</h1>
+            <p class="page-description">
+              Ask questions about your document and receive instant,
+              context-aware answers.
+            </p>
+          </div>
+        </div>
+      </header>
 
-      <div id="chat-box" class="chat-box"></div>
+      <main class="chat-container" id="main-content">
+        <section class="chat-panel" aria-label="Chat conversation">
+          <div
+            id="chat-box"
+            class="chat-box"
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions"
+          ></div>
+        </section>
 
-      <form id="chat-form" class="chat-form">
-        <textarea
-          id="question-input"
-          placeholder="Ask something about the document..."
-          required
-        ></textarea>
-        <button type="submit">Send</button>
-      </form>
+        <section class="chat-input-panel">
+          <form id="chat-form" class="chat-form">
+            <label for="question-input" class="chat-label">Your question</label>
+            <textarea
+              id="question-input"
+              name="question"
+              rows="3"
+              placeholder="Ask something about the document..."
+              required
+            ></textarea>
+            <button type="submit" class="chat-button">Send</button>
+          </form>
+        </section>
+      </main>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
       const form = document.getElementById("chat-form");
       const textarea = document.getElementById("question-input");
       const chatBox = document.getElementById("chat-box");
 
-      // Submit on Enter (Shift+Enter = newline)
       textarea.addEventListener("keydown", function (e) {
         if (e.key === "Enter" && !e.shiftKey) {
           e.preventDefault();
-          form.dispatchEvent(new Event("submit"));
+          form.dispatchEvent(
+            new Event("submit", { cancelable: true, bubbles: true }),
+          );
         }
       });
 
@@ -52,35 +81,28 @@
         const res = await fetch("/ask", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: question }),
+          body: JSON.stringify({ question }),
         });
 
         const data = await res.json();
-
         typeWriter(thinkingMsg, data.answer, 15);
       });
 
-      // Add message to chat
       function addMessage(text, sender) {
-        const message = document.createElement("div");
+        const message = document.createElement("article");
         message.classList.add("message", sender);
-
         message.innerText = text;
-
         chatBox.appendChild(message);
         chatBox.scrollTop = chatBox.scrollHeight;
-
         return message;
       }
 
       function typeWriter(element, text, speed = 15) {
         element.innerHTML = "";
         let i = 0;
-
         const cursor = document.createElement("span");
         cursor.classList.add("cursor");
-        cursor.innerHTML = "|";
-
+        cursor.textContent = "|";
         element.appendChild(cursor);
 
         function typing() {
@@ -91,8 +113,6 @@
             setTimeout(typing, speed);
           } else {
             cursor.remove();
-
-            // Convert to markdown AFTER typing
             element.innerHTML = marked.parse(text);
           }
         }
