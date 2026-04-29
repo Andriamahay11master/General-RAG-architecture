@@ -17,6 +17,12 @@ body {
 
 .page-header {
   padding: 14px 0 24px;
+  @include mobile {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: $white-f4;
+  }
 }
 
 .page-brand {
@@ -60,11 +66,10 @@ body {
   display: grid;
   grid-template-rows: auto minmax(0, auto);
   gap: 16px;
-  height: calc(100vh - 42px);
+  height: calc(100vh - 140px);
   @include mobile {
     height: auto;
     gap: 8px;
-    padding: 0 1rem;
   }
 }
 
@@ -78,15 +83,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @include mobile {
+    position: fixed;
+    bottom: 0;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    background: $white-f4;
+  }
 }
 
 .chat-form {
   width: 100%;
-}
-
-.chat-label {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  color: darken($white-f4, 40%);
 }

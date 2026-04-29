@@ -20,6 +20,14 @@ body {
 .page-header {
   padding: 14px 0 24px;
 }
+@media (max-width: 600px) {
+  .page-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #f4f6f9;
+  }
+}
 
 .page-brand {
   display: flex;
@@ -64,13 +72,12 @@ body {
   display: grid;
   grid-template-rows: auto minmax(0, auto);
   gap: 16px;
-  height: calc(100vh - 42px);
+  height: calc(100vh - 140px);
 }
 @media (max-width: 600px) {
   .chat-container {
     height: auto;
     gap: 8px;
-    padding: 0 1rem;
   }
 }
 
@@ -85,16 +92,18 @@ body {
   flex-direction: column;
   gap: 12px;
 }
+@media (max-width: 600px) {
+  .chat-input-panel {
+    position: fixed;
+    bottom: 0;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    background: #f4f6f9;
+  }
+}
 
 .chat-form {
   width: 100%;
-}
-
-.chat-label {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  color: #708ab1;
 }
 
 .chat-box {
